@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.igl.smssender.MessageSender"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <!--<io.netopen.hotbitmapgg.library.view.RingProgressBar-->
+    <!--android:id="@+id/progressBar"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:ringColor="@android:color/darker_gray"-->
+    <!--app:ringProgressColor="@color/colorPrimaryDark"-->
+    <!--app:ringWidth="3dp"-->
+    <!--app:style="STROKE"-->
+    <!--app:textColor="@color/colorPrimary"-->
+    <!--app:textIsShow="true"-->
+    <!--/>-->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        style="?android:attr/progressBarStyleHorizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/showProgress"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:textSize="@dimen/textSize"
+            android:textColor="@color/colorText"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/maxNumber"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:textSize="@dimen/textSize"
+            android:textColor="@color/colorText"
+            android:layout_height="wrap_content"
+            android:text=" / 100" />
+    </LinearLayout>
+    <!--<TextView-->
+    <!--android:id="@+id/textView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="@dimen/sendingMessageMargin"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/sendingMessage"/>-->
+
+
+</LinearLayout>

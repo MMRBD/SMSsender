@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Activity-->
+    <dimen name="layoutBorderStyleCornerRadius">2dp</dimen>
+    <dimen name="layoutBorderStyleStorkWidth">1dp</dimen>
+
+
+    <dimen name="messageBoxStyleCornerRadius">2dp</dimen>
+    <dimen name="messageBoxStyleStorkWidth">1dp</dimen>
+    <dimen name="paddingLeftRightTop">10dp</dimen>
+    <dimen name="paddingBottom">40dp</dimen>
+
+    <dimen name="sendButtonStyleCornerRadius">5dp</dimen>
+    <dimen name="sendButtonStyleStorkWidth">1dp</dimen>
+    <dimen name="buttonTextSize">20dp</dimen>
+
+    <!-- MessageSender Activity-->
+
+
+
+    <dimen name="sendingMessageMargin">50dp</dimen>
+    <dimen name="textSize">25sp</dimen>
+
+</resources>
