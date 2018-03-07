@@ -17,7 +17,7 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="200dp"
+                android:layout_width="170dp"
                 android:layout_height="150dp"
                 android:background="@mipmap/contacts_icon"
                 android:layout_marginBottom="10dp"
@@ -62,17 +62,17 @@
                     android:id="@+id/messageBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/message_box_style"
+                    android:gravity="left|top"
+                    android:hint="@string/messageBoxHelpMessage"
                     android:inputType="textMultiLine"
                     android:lines="6"
-                    android:maxLength="150"
-                    android:scrollbars="vertical"
+                    android:maxLength="159"
+                    android:paddingBottom="@dimen/paddingBottom"
                     android:paddingLeft="@dimen/paddingLeftRightTop"
                     android:paddingRight="@dimen/paddingLeftRightTop"
                     android:paddingTop="@dimen/paddingLeftRightTop"
-                    android:paddingBottom="@dimen/paddingBottom"
-                    android:gravity="left|top"
-                    android:background="@drawable/message_box_style"
-                    android:hint="@string/messageBoxHelpMessage"/>
+                    android:scrollbars="vertical" />
 
                 <LinearLayout
                     android:layout_marginTop="-35dp"

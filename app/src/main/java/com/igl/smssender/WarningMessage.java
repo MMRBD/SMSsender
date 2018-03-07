@@ -4,6 +4,8 @@ package com.igl.smssender;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Looper;
 
 /**
  * Created by RAD on 05-Apr-17.

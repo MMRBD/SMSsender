@@ -1,7 +1,7 @@
 package com.igl.smssender;
 
-import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,11 +10,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,14 +34,13 @@ public class MessageSender extends AppCompatActivity {
 
     BroadcastReceiver sentReceiver;
 
-    final Handler handler = new Handler();
-    WarningMessage dialog;
+    final Handler handler = new Handler(Looper.getMainLooper());
+    //WarningMessage dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_sender);
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
 
         initializationAllXMLCompononet();
 
@@ -56,7 +54,7 @@ public class MessageSender extends AppCompatActivity {
 
         progressBar.setMax(contactsLength);
 
-        buildDialog();
+        //buildDialog();
 
 
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
@@ -70,8 +68,8 @@ public class MessageSender extends AppCompatActivity {
                         //increaseProgress();// inclease the SMS progress
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                        increaseProgress();
-                        //Toast.makeText(context, "Generic failure", Toast.LENGTH_SHORT).show();
+                        //increaseProgress();
+                        Toast.makeText(context, "Generic failure", Toast.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE:
                         Toast.makeText(context, "No service", Toast.LENGTH_SHORT).show();
@@ -97,14 +95,15 @@ public class MessageSender extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Looper.prepare();
                 while (!contacts.isEmpty()) {
 
-                    SystemClock.sleep(2000);
-                    Log.e("GetNumber" + contacts.size(), contacts.peek());
+                    SystemClock.sleep(1000);
                     sms.sendTextMessage(contacts.peek(), null, message, pendingIntent, null);
                     sentProgress();
                     contacts.pop();
                 }
+                Looper.loop();
             }
         }).start();
 
@@ -134,35 +133,52 @@ public class MessageSender extends AppCompatActivity {
         showProgress = (TextView) findViewById(R.id.showProgress);
     }
 
-    private void buildDialog() {
-        dialog = new WarningMessage(this, "ALL SMS ARE", "Successfully Sent");
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        });
-    }
+//    private void buildDialog() {
+//        dialog = new WarningMessage(this, "ALL SMS ARE", "Successfully Sent");
+//        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                finish();
+//            }
+//        });
+//    }
 
 
     public void sentProgress() {
         progressBar.setProgress(progressBar.getProgress() + 1);
         showProgress.setText(String.valueOf(progressBar.getProgress()));
+        isDone();
     }
 
-    public void increaseProgress() {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                sentProgress();
-                isDone();
-            }
-        });
-    }
+//    public void increaseProgress() {
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                sentProgress();
+//                //isDone();
+//            }
+//        });
+//    }
 
     public void isDone() {
         if (progressBar.getProgress() == contactsLength) {
-            dialog.display();
+//            buildDialog();
+//            dialog.display();
+            showDialog();
         }
+    }
+
+    public void showDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("SMS SENDER...");
+        builder.setMessage("All SMS Successfully Sent");
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogInterface, int id) {
+                        finish();
+                    }
+                });
+        builder.setCancelable(false);
+        builder.create().show();
     }
 }

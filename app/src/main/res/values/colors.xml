@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<color name="colorPrimary">#3F51B5</color>
-<color name="colorPrimaryDark">#303F9F</color>
-<color name="colorAccent">#FF4081</color>
+<color name="colorPrimary">#2095d6</color>
+<color name="colorPrimaryDark">#0c689b</color>
+<color name="colorAccent">#0c689b</color>
 
 
     <!-- Main Activity-->
@@ -13,8 +13,8 @@
     <color name="messageBoxStyleSolid">#ffffff</color>
     <color name="messageBoxStyleStork">#3F51B5</color>
 
-    <color name="sendButtonStyleSolid">#3F51B5</color>
-    <color name="sendButtonStyleStork">#3F51B5</color>
+    <color name="sendButtonStyleSolid">#0675b3</color>
+    <color name="sendButtonStyleStork">#0c689b</color>
 
     <color name="colorText">#000000</color>
 

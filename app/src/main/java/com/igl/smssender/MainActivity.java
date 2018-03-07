@@ -1,14 +1,15 @@
 package com.igl.smssender;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         xmlComponentInitialization();
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
 
         //checkManufacture();
 
@@ -163,8 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 readSelectedFileDataAndMakeContactsBundle(filePath);
             } catch (NullPointerException e) {
 
-                Log.e("filePath", "not found");
-
                 Toast.makeText(this, "PLease, Select Contacts List!", Toast.LENGTH_SHORT).show();
 
                 //u startActivityForResult(intentChoos, PICK_FILE_RESULT_CODE);
@@ -180,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
 
             while ((line = br.readLine()) != null) {
                 contacts.push(line.trim());
-                Log.e("Contact", contacts.peek());
             }
             br.close();
             //contactsBundle = contactsBundle.substring(0, contactsBundle.length()-1);
@@ -244,7 +243,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    ////////////////////////////////////////////////////////////////////////////////
 
 
 }
